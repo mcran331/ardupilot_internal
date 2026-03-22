@@ -706,6 +706,11 @@ public:
     void *mode_poshold_ptr;
 #endif
 
+#if AP_ICENGINE_ENABLED
+    // internal combustion engine control
+    AP_ICEngine ice_control;
+#endif
+
 };
 
 extern const AP_Param::Info        var_info[];

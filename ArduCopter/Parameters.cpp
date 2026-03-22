@@ -1167,6 +1167,12 @@ const AP_Param::GroupInfo ParametersG2::var_info2[] = {
     AP_SUBGROUPPTR(mode_poshold_ptr, "PHLD_", 16, ParametersG2, ModePosHold),
 #endif
 
+#if AP_ICENGINE_ENABLED
+    // @Group: ICE_
+    // @Path: ../libraries/AP_ICEngine/AP_ICEngine.cpp
+    AP_SUBGROUPINFO(ice_control, "ICE_", 17, ParametersG2, AP_ICEngine),
+#endif
+
     // ID 62 is reserved for the AP_SUBGROUPEXTENSION
 
     AP_GROUPEND
