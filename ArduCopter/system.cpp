@@ -176,6 +176,10 @@ void Copter::init_ardupilot()
     custom_control.init();
 #endif
 
+#if AP_ICENGINE_ENABLED
+    g2.ice_control.init();
+#endif
+
     // set landed flags
     set_land_complete(true);
     set_land_complete_maybe(true);
