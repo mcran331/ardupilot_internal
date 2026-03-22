@@ -66,6 +66,7 @@
 #include <AP_Parachute/AP_Parachute.h>      // ArduPilot parachute release library
 #include <AC_Sprayer/AC_Sprayer.h>          // Crop sprayer library
 #include <AP_Avoidance/AP_Avoidance.h>      // "ADSB" avoidance library
+#include <AP_ICEngine/AP_ICEngine.h>
 #include <AP_ADSB/AP_ADSB.h>                // ADS-B RF based collision avoidance module library
 #include <AP_Proximity/AP_Proximity.h>      // ArduPilot proximity sensor library
 #include <AC_PrecLand/AC_PrecLand_config.h>
@@ -166,6 +167,10 @@
 
 #if MODE_AUTOROTATE_ENABLED && !AP_RPM_ENABLED
   #error AC_Autorotation relies on AP_RPM_ENABLED which is disabled
+#endif
+
+#if AP_ICENGINE_ENABLED
+  #include <AP_ICEngine/AP_ICEngine.h>
 #endif
 
 #if HAL_ADSB_ENABLED
