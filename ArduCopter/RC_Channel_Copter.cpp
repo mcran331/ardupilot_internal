@@ -145,6 +145,9 @@ void RC_Channel_Copter::init_aux_function(const AUX_FUNC ch_option, const AuxSwi
 #if AP_RC_TRANSMITTER_TUNING_ENABLED
     case AUX_FUNC::TRANSMITTER_TUNING:
     case AUX_FUNC::TRANSMITTER_TUNING2:
+#if AP_ICENGINE_ENABLED
+    case AUX_FUNC::ICE_START_STOP:
+#endif
         run_aux_function(ch_option, ch_flag, AuxFuncTrigger::Source::INIT, ch_in);
         break;
 #endif  // AP_RC_TRANSMITTER_TUNING_ENABLED
@@ -684,6 +687,12 @@ bool RC_Channel_Copter::do_aux_function(const AuxFuncTrigger &trigger)
         // do nothing, used in tuning.cpp for transmitter based tuning
         break;
 #endif  // AP_RC_TRANSMITTER_TUNING_ENABLED
+
+#if AP_ICENGINE_ENABLED
+    case AUX_FUNC::ICE_START_STOP:
+        copter.g2.ice_control.do_aux_function(trigger);
+        break;
+#endif
 
     default:
         return RC_Channel::do_aux_function(trigger);
