@@ -585,6 +585,14 @@ MAV_RESULT GCS_MAVLINK_Copter::handle_command_int_packet(const mavlink_command_i
     default:
         return GCS_MAVLINK::handle_command_int_packet(packet, msg);
     }
+
+#if AP_ICENGINE_ENABLED
+    case MAV_CMD_DO_ENGINE_CONTROL:
+        if (!copter.g2.ice_control.engine_control(packet.param1, packet.param2, packet.param3, (uint32_t)packet.param4)) {
+            return MAV_RESULT_FAILED;
+        }
+        return MAV_RESULT_ACCEPTED;
+#endif
 }
 
 #if HAL_MOUNT_ENABLED
